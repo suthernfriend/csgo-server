@@ -5,9 +5,9 @@ ENV USER csgo
 ENV HOME /home/$USER
 ENV SERVER $HOME/hlserver
 
-RUN apt -y update \
-    && apt -y install lib32gcc1 curl \
-    && apt clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+RUN apt-get -y update \
+    && apt-get -y install lib32gcc1 curl net-tools lib32stdc++6 \
+    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && useradd $USER \
     && mkdir $HOME \
     && chown $USER:$USER $HOME \
