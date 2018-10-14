@@ -42,3 +42,9 @@ docker run -d -p 27015:27015 -p 27015:27015/udp csgo -console -usercon +game_typ
 
 To run public server you need to [Register Login Token](http://steamcommunity.com/dev/managegameservers) and adding `+sv_setsteamaccount THISGSLTHERE -net_port_try 1` to the server command.
 Refer to [Docs](https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Dedicated_Servers#Registering_Game_Server_Login_Token) for more details.
+
+### Multiple servers
+Give each server a unique port for both game and gotv. In this case, we use 27015 for game and 28015 for gotv. These can be incremented by one for each server.
+```shell
+docker run -d -p 27015:27015 -p 27015:27015/udp -p 28015:28015 -p 28015:28015/udp csgo -port 27015 +tv_port 28015
+```
