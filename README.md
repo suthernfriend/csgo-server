@@ -14,7 +14,7 @@ You can create new Dockerfile based on that image (FROM csgo) and customize it w
 
 ```shell
 # Build image and tag it as csgo
-docker build -t csgo github.com/Gonzih/docker-csgo-server
+docker build -t csgo github.com/AAULAN/docker-csgo-server
 
 # Run image with default options (CMD in Dockerfile)
 docker run -d -p 27015:27015 -p 27015:27015/udp csgo
@@ -46,5 +46,5 @@ Refer to [Docs](https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_
 ### Multiple servers
 Give each server a unique port for both game and gotv. In this case, we use 27015 for game and 28015 for gotv. These can be incremented by one for each server.
 ```shell
-docker run -d -p 27015:27015 -p 27015:27015/udp -p 28015:28015 -p 28015:28015/udp csgo -port 27015 +tv_port 28015
+docker run -d -p 27015:27015 -p 27015:27015/udp -p 28015:28015 -p 28015:28015/udp csgo -port 27015 +tv_port 28015 +sv_setsteamaccount THISGSLTHERE -net_port_try 1
 ```
