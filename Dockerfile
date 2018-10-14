@@ -1,14 +1,13 @@
-FROM ubuntu:16.04
-MAINTAINER Max Gonzih <gonzih at gmail dot com>
+FROM ubuntu:18.04
+MAINTAINER Lasse Bjerre <lasse at lgb dot dk>
 
 ENV USER csgo
 ENV HOME /home/$USER
 ENV SERVER $HOME/hlserver
 
-RUN apt-get -y update \
-    && apt-get -y upgrade \
-    && apt-get -y install lib32gcc1 curl net-tools lib32stdc++6 \
-    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+RUN apt -y update \
+    && apt -y install lib32gcc1 curl \
+    && apt clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && useradd $USER \
     && mkdir $HOME \
     && chown $USER:$USER $HOME \
@@ -26,7 +25,10 @@ USER $USER
 RUN curl http://media.steampowered.com/client/steamcmd_linux.tar.gz | tar -C $SERVER -xvz \
  && $SERVER/update.sh
 
+EXPOSE 27015/tcp
 EXPOSE 27015/udp
+EXPOSE 28015/tcp
+EXPOSE 28015/udp
 
 WORKDIR /home/$USER/hlserver
 ENTRYPOINT ["./csgo.sh"]
