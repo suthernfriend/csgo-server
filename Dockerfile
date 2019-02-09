@@ -13,6 +13,8 @@ RUN apt-get -y update \
     && chown $USER:$USER $HOME \
     && mkdir $SERVER
 
+VOLUME $SERVER/csgo/csgo/cfg $SERVER/csgo/csgo/maps/custom
+
 ADD ./csgo_ds.txt $SERVER/csgo_ds.txt
 ADD ./update.sh $SERVER/update.sh
 ADD ./autoexec.cfg $SERVER/csgo/csgo/cfg/autoexec.cfg
